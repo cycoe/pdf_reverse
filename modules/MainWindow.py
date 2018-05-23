@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from PyQt5.QtWidgets import QWidget, QPushButton, QFileDialog, QHBoxLayout, QVBoxLayout, QLineEdit
+from PyQt5.QtWidgets import QWidget, QPushButton, QFileDialog, QHBoxLayout, QVBoxLayout, QLineEdit, QStatusBar
 from PyQt5.QtCore import pyqtSlot, pyqtSignal, QThread
 from modules.PdfHandler import PdfHandler
 
@@ -14,6 +14,7 @@ class MainWindow(QWidget):
         self.add_elements()
         self.clean_file_selection()
         self.add_connect()
+        self.STOP = False
 
     def create_elements(self):
         self.mainLayout = QVBoxLayout()
@@ -24,6 +25,7 @@ class MainWindow(QWidget):
         self.inverseButton = QPushButton('Inverse')
         self.fileDialog = QFileDialog(self)
         self.inverseThread = InverseThread(self)
+        self.statusBar = QStatusBar(self)
 
     def set_property(self):
         # set main window properties
@@ -43,7 +45,6 @@ class MainWindow(QWidget):
         self.fileLayout.addWidget(self.unselectButton)
         self.mainLayout.addWidget(self.inverseButton)
 
-
     def add_connect(self):
         self.fileButton.clicked.connect(self.open_file_dialog)
         self.unselectButton.clicked.connect(self.clean_file_selection)
@@ -53,19 +54,30 @@ class MainWindow(QWidget):
     def open_file_dialog(self):
         self.pdf_path.extend(self.fileDialog.getOpenFileNames(self, 'Choose files to inverse', '.', '*.pdf')[0])
         self.fileLine.setText(str(self.pdf_path))
+        self.inverseThread.set_pdf_path(self.pdf_path)
 
     @pyqtSlot()
     def clean_file_selection(self):
         self.pdf_path = []
         self.fileLine.setText(str(self.pdf_path))
+        self.inverseThread.set_pdf_path(self.pdf_path)
 
     @pyqtSlot()
     def inverse(self):
         self.fileButton.setEnabled(False)
-        self.inverseButton.setEnabled(False)
-        self.inverseButton.setText('Processing...')
-        self.inverseThread.set_pdf_path(self.pdf_path)
+        self.unselectButton.setEnabled(False)
+        self.inverseButton.setText('Processing...Click to stop')
+        self.inverseButton.clicked.disconnect(self.inverse)
+        self.inverseButton.clicked.connect(self.stop)
         self.inverseThread.start()
+
+    @pyqtSlot()
+    def stop(self):
+        self.STOP = True
+        self.inverseButton.clicked.disconnect(self.stop)
+        self.inverseButton.clicked.connect(self.inverse)
+        self.inverseButton.setEnabled(False)
+        self.inverseButton.setText('Stopping...')
 
 class InverseThread(QThread):
     signal = pyqtSignal(int)
@@ -73,7 +85,7 @@ class InverseThread(QThread):
     def __init__(self, window):
         super(InverseThread, self).__init__()
         self.window = window
-        self.pdfHandler = PdfHandler(self)
+        self.pdfHandler = PdfHandler()
 
     def set_task(self, task):
         self.task = task
@@ -83,13 +95,20 @@ class InverseThread(QThread):
 
     def run(self):
         for pdf_path in self.pdf_path:
-            self.pdfHandler.init_image_path()
-            self.pdfHandler.create_cache_dir(pdf_path)
-            self.pdfHandler.convert_to_img(pdf_path)
-            self.pdfHandler.inverse()
-            self.pdfHandler.convert_to_pdf()
-            self.pdfHandler.clean()
+            if self.window.STOP:
+                self.window.STOP = False
+                self.stop()
+                return None
+            self.pdfHandler.run(pdf_path)
+            self.pdf_path.remove(pdf_path)
+            self.window.statusBar.showMessage('{} inverse Done'.format(pdf_path))
+        self.end()
 
+    def end(self):
+        self.stop()
+
+    def stop(self):
         self.window.fileButton.setEnabled(True)
         self.window.inverseButton.setEnabled(True)
+        self.window.unselectButton.setEnabled(True)
         self.window.inverseButton.setText('Inverse')
