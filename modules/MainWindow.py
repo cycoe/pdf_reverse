@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from PyQt5.QtWidgets import QWidget, QPushButton, QFileDialog, QHBoxLayout, QVBoxLayout, QLineEdit, QStatusBar
+from PyQt5.QtWidgets import QWidget, QPushButton, QFileDialog, QHBoxLayout, QVBoxLayout, QLineEdit, QStatusBar, QProgressBar
 from PyQt5.QtCore import pyqtSlot, pyqtSignal, QThread
 from modules.PdfHandler import PdfHandler
 
@@ -26,16 +26,18 @@ class MainWindow(QWidget):
         self.fileDialog = QFileDialog(self)
         self.inverseThread = InverseThread(self)
         self.statusBar = QStatusBar(self)
+        self.progressBar = QProgressBar()
 
     def set_property(self):
         # set main window properties
         self.setWindowTitle('Pdf Inverse')
         self.resize(600, 200)
 
-        #set widget properties
+        # set widget properties
         self.fileButton.setToolTip('Click here to open one or more pdf files ro inverse color')
         self.inverseButton.setToolTip('Click here to start inverse')
         self.fileLine.setReadOnly(True)
+        self.statusBar.setSizeGripEnabled(False)
 
     def add_elements(self):
         self.setLayout(self.mainLayout)
@@ -44,6 +46,7 @@ class MainWindow(QWidget):
         self.fileLayout.addWidget(self.fileButton)
         self.fileLayout.addWidget(self.unselectButton)
         self.mainLayout.addWidget(self.inverseButton)
+        self.mainLayout.addWidget(self.progressBar)
 
     def add_connect(self):
         self.fileButton.clicked.connect(self.open_file_dialog)
@@ -85,7 +88,7 @@ class InverseThread(QThread):
     def __init__(self, window):
         super(InverseThread, self).__init__()
         self.window = window
-        self.pdfHandler = PdfHandler()
+        self.pdfHandler = PdfHandler(window)
 
     def set_task(self, task):
         self.task = task
