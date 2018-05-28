@@ -3,8 +3,8 @@
 import os
 import time
 import numpy as np
+import fitz
 
-from wand.image import Image as Image_pdf
 from PIL import Image, ImageOps
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.pdfgen import canvas
@@ -52,20 +52,20 @@ class PdfHandler(object):
             os.mkdir(self.cache_path)
 
     @timer
-    def convert_to_img(self, pdf_reader, pdf_path, image_path, suffix, resolution=100):
+    def convert_to_img(self, pdf_reader, pdf_path, image_path):
         pdf_writer = PdfFileWriter()
         pdf_writer.addPage(pdf_reader)
         pdf_writer.write(open(pdf_path, 'wb'))
         del pdf_writer
 
         try:
-            pdf_page = Image_pdf(filename=pdf_path, resolution=resolution)
+            pdf_page = fitz.open(pdf_path)
         except:
             return False
-        img_page = Image_pdf(image=pdf_page.sequence[0]).make_blob(suffix)
-        with open(image_path, 'wb') as fp:
-            fp.write(img_page)
-        del img_page, pdf_page
+        trans = fitz.Matrix(1, 1)
+        image_page = pdf_page[0].getPixmap(trans, alpha=False)
+        image_page.writePNG(image_path)
+        del pdf_page, image_page
 
         return True
 
@@ -184,6 +184,7 @@ class PdfHandler(object):
             except:
                 print('Not a empty directory')
 
+    @timer
     def run(self, file_path, stop_method):
         self.file_path = file_path
         self.init_image_path()
@@ -192,7 +193,6 @@ class PdfHandler(object):
         pdf_reader = PdfFileReader(open(self.file_path, 'rb'))
         pdf_merger = PdfFileMerger()
         self.page_num = pdf_reader.getNumPages()
-        suffix = 'jpg'
 
         for index in range(self.page_num):
 
@@ -201,8 +201,8 @@ class PdfHandler(object):
                 break
 
             pdf_path = os.sep.join([self.cache_path, '{}.{}'.format(str(index), 'pdf')])
-            image_path = os.sep.join([self.cache_path, '{}.{}'.format(str(index), suffix)])
-            if self.convert_to_img(pdf_reader.getPage(index), pdf_path, image_path, suffix, resolution=100):
+            image_path = os.sep.join([self.cache_path, '{}.{}'.format(str(index), 'png')])
+            if self.convert_to_img(pdf_reader.getPage(index), pdf_path, image_path):
                 self.remove_back(image_path)
                 self.convert_to_pdf(image_path, pdf_path)
 
