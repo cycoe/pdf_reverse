@@ -184,7 +184,7 @@ class PdfHandler(object):
             except:
                 print('Not a empty directory')
 
-    def run(self, file_path):
+    def run(self, file_path, stop_method):
         self.file_path = file_path
         self.init_image_path()
         self.create_cache_dir()
@@ -195,6 +195,11 @@ class PdfHandler(object):
         suffix = 'jpg'
 
         for index in range(self.page_num):
+
+            if self.window.STOP:
+                stop_method()
+                break
+
             pdf_path = os.sep.join([self.cache_path, '{}.{}'.format(str(index), 'pdf')])
             image_path = os.sep.join([self.cache_path, '{}.{}'.format(str(index), suffix)])
             if self.convert_to_img(pdf_reader.getPage(index), pdf_path, image_path, suffix, resolution=100):

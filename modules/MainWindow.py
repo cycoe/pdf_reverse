@@ -98,11 +98,8 @@ class InverseThread(QThread):
 
     def run(self):
         for pdf_path in self.pdf_path:
-            if self.window.STOP:
-                self.window.STOP = False
-                self.stop()
-                return None
-            self.pdfHandler.run(pdf_path)
+            self.window.progressBar.setValue(0)
+            self.pdfHandler.run(pdf_path, self.stop)
             self.pdf_path.remove(pdf_path)
             self.window.statusBar.showMessage('{} inverse Done'.format(pdf_path))
         self.end()
@@ -115,3 +112,4 @@ class InverseThread(QThread):
         self.window.inverseButton.setEnabled(True)
         self.window.unselectButton.setEnabled(True)
         self.window.inverseButton.setText('Inverse')
+        self.window.progressBar.setValue(0)

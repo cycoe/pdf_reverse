@@ -4,7 +4,6 @@
     <list default="true" id="f10fc56f-9fd5-4a57-95dc-085c8987b880" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/icons_new_new.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/icons_new_new.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons_new_new_new.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/icons_new_new_new.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/MainWindow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/PdfHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/PdfHandler.py" afterDir="false" />
     </list>
@@ -32,8 +31,8 @@
       <file leaf-file-name="MainWindow.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/MainWindow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="48" column="51" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
+            <state relative-caret-position="63">
+              <caret line="94" selection-start-line="94" selection-end-line="94" />
               <folding>
                 <element signature="e#17#141#0" expanded="true" />
               </folding>
@@ -44,8 +43,8 @@
       <file leaf-file-name="PdfHandler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/PdfHandler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="204" lean-forward="true" selection-start-line="204" selection-end-line="204" />
+            <state relative-caret-position="41">
+              <caret line="200" column="21" selection-start-line="200" selection-start-column="21" selection-end-line="200" selection-end-column="21" />
               <folding>
                 <element signature="e#17#26#0" expanded="true" />
               </folding>
@@ -106,6 +105,16 @@
               <item name="pdf_inverse" type="b2602c69:ProjectViewProjectNode" />
               <item name="pdf_inverse" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="pdf_inverse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pdf_inverse" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pdf_inverse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pdf_inverse" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -147,7 +156,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="23" y="39" width="1874" height="721" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.07066381" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -617,8 +625,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/PdfHandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="204" lean-forward="true" selection-start-line="204" selection-end-line="204" />
+        <state relative-caret-position="41">
+          <caret line="200" column="21" selection-start-line="200" selection-start-column="21" selection-end-line="200" selection-end-column="21" />
           <folding>
             <element signature="e#17#26#0" expanded="true" />
           </folding>
@@ -627,8 +635,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/MainWindow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="48" column="51" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
+        <state relative-caret-position="63">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
           <folding>
             <element signature="e#17#141#0" expanded="true" />
           </folding>
