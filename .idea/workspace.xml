@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f10fc56f-9fd5-4a57-95dc-085c8987b880" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons_new_new.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/icons_new_new.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons_new_new_new.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/icons_new_new_new.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/PdfHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/PdfHandler.py" afterDir="false" />
-    </list>
+    <list default="true" id="f10fc56f-9fd5-4a57-95dc-085c8987b880" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +26,7 @@
       <file leaf-file-name="MainWindow.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/MainWindow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
+            <state relative-caret-position="2024">
               <caret line="94" selection-start-line="94" selection-end-line="94" />
               <folding>
                 <element signature="e#17#141#0" expanded="true" />
@@ -43,8 +38,8 @@
       <file leaf-file-name="PdfHandler.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/PdfHandler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3622">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="22">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="e#17#26#0" expanded="true" />
               </folding>
@@ -97,6 +92,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -108,7 +104,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -146,7 +141,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="23" y="39" width="1874" height="1018" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14132762" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -171,6 +165,16 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/modules/PdfHandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#17#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/PdfHandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="880">
@@ -613,7 +617,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/MainWindow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
+        <state relative-caret-position="2024">
           <caret line="94" selection-start-line="94" selection-end-line="94" />
           <folding>
             <element signature="e#17#141#0" expanded="true" />
@@ -621,13 +625,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cache/0.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/PdfHandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3622">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="22">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#17#26#0" expanded="true" />
           </folding>
